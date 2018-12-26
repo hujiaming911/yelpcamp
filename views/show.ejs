@@ -1,0 +1,54 @@
+<%include partials/header%>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img src="<%=camp.url%>" class="img-responsive">
+                <div class="caption-full">
+                    <h4 class="pull-right">$<%=camp.price%>/night</h4>
+                    <h4><a><%=camp.name%></a></h4>
+                    <p><%=camp.des%></p>
+                    <p><em>Submitted by <%= camp.author.username %></em></p>
+                    <% if(currentUser&&camp.author.id.equals(currentUser._id)){       %>
+                    <a class="btn btn-warning" href="/campground/<%=camp._id%>/edit">Edit</a>
+                    <form id="deleteform" action="/campground/<%=camp._id%>?_method=DELETE"  method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <%}%>
+                </div>
+            </div>
+            <div class="well">
+                <div>
+                    <div class="text-center">
+                    <a class="btn btn-success btn-large" href="/campground/<%=camp._id%>/comments/new">Leave a review</a>
+                    </div>
+                    <% for(var i=0;i<camp.comments.length;i++){ %>
+                    <div class="row">
+                        <div class="col-mid-12">
+                            <p><%= camp.comments[i].author.username %></p>
+                            <p>
+                              <%=  camp.comments[i].text  %>
+                            </p>
+                            <% if(currentUser&&camp.comments[i].author.id.equals(currentUser._id)){       %>
+                            <a class="btn btn-xs btn-warning" href="/campground/<%=camp._id%>/comments/<%=camp.comments[i]._id%>/edit">edit</a>
+                            <form id="deletecommentform" action="/campground/<%=camp._id%>/comments/<%=camp.comments[i]._id%>?_method=DELETE"  method="POST">
+                                <button class="btn btn-danger btn-xs">Delete</button>
+                            </form>
+                            <%}%>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<%include partials/tail%>
