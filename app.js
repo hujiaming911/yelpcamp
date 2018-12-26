@@ -10,7 +10,9 @@ var bodyparser=require("body-parser");
 app.use(bodyparser.urlencoded({extended:true}));
 
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/yelpcamp",{useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost:27017/yelpcamp",{useNewUrlParser: true });
+mongoose.connect("mongodb://jiaming:15040huhu@ds143604.mlab.com:43604/camp",{ useNewUrlParser: true });
+
 
 var Camp=require("./modules/campground.js");
 var Comment=require("./modules/comment.js");

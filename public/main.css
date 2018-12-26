@@ -37,5 +37,4 @@ background: linear-gradient(to left, #19547b, #ffd89b); /* W3C, IE 10+/ Edge, Fi
 .flex-wrap {
   display:flex;
   flex-wrap: wrap;
-  height:174px;
 }
